@@ -21,7 +21,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-`,c=r.default.a.withConfig({displayName:"pages__Button",componentId:"sc-32752341-5"})`
+`,c=r.default.button.withConfig({displayName:"pages__Button",componentId:"sc-32752341-5"})`
   display: inline-flex;
   align-items: center;
   justify-content: center;
