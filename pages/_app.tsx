@@ -64,6 +64,11 @@ const GlobalStyle = createGlobalStyle`
   font-weight: 400;
   }
 
+  h2 {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
   a {
     color: inherit;
     text-decoration: none;

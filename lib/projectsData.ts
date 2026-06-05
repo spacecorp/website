@@ -11,7 +11,21 @@ export interface Project {
   longDescription: string;
   tags: string[];
   image: string;
-  year: number;
+  heroImage?: string;
+  galerryImages?: string[];
+  date?: Date;
+  featured?: boolean;
+  hidden?: boolean;
+  collaboration?: {
+    name: string;
+    web?: string;
+  }[];
+  links?: {
+    appleStore?: string;
+    playStore?: string;
+    web?: string;
+    source?: string;
+  };
 }
 
 export const categories: Category[] = [
@@ -48,7 +62,11 @@ export const projects: Project[] = [
       'Everyday T represents our exploration into 3D design and visualization for modern apparel. This project showcases detailed modeling, realistic texturing, and conceptual design thinking applied to wearable fashion technology.',
     tags: ['3D', 'Design'],
     image: '/gallery/3d-1.svg',
-    year: 2024,
+    featured: true,
+    date: new Date('February 2, 2026'),
+    links: {
+      web: 'https://makerworld.com/en/models/2388736-everyday-t-led-lamp-kit-001',
+    },
   },
   {
     id: 'music-studio-tools',
@@ -59,7 +77,9 @@ export const projects: Project[] = [
       'A comprehensive collection of 3D models designed for audio production environments. This project demonstrates our capability in creating detailed visualizations of complex studio equipment and interfaces.',
     tags: ['3D', 'Audio', 'Tools'],
     image: '/gallery/3d-2.svg',
-    year: 2024,
+    links: {
+      web: 'https://makerworld.com/en/collections/2643205-music-studio-accessories',
+    },
   },
 
   // Games/Addons Category (World of Warcraft)
@@ -72,7 +92,10 @@ export const projects: Project[] = [
       'Express your Elf is a World of Warcraft addon that expands character customization options, allowing players to personalize their elven characters with unique visual enhancements and cosmetic features.',
     tags: ['World of Warcraft', 'Addon', 'Character Customization'],
     image: '/gallery/wow-1.svg',
-    year: 2023,
+    date: new Date('May 26, 2020'),
+    links: {
+      web: 'https://www.curseforge.com/wow/addons/express-your-elf',
+    },
   },
   {
     id: 'nurse-nancy',
@@ -83,7 +106,10 @@ export const projects: Project[] = [
       'Nurse Nancy is a utility-focused World of Warcraft addon that provides helpful in-game features and quality-of-life improvements for healing and support gameplay.',
     tags: ['World of Warcraft', 'Addon', 'Utility'],
     image: '/gallery/wow-2.svg',
-    year: 2023,
+    date: new Date('April 23, 2020'),
+    links: {
+      web: 'https://www.curseforge.com/wow/addons/nurse-nancy',
+    },
   },
   {
     id: 'divine-window',
@@ -94,7 +120,10 @@ export const projects: Project[] = [
       'Divine Window enhances the World of Warcraft interface with a focus on holy and divine aesthetics, providing both visual improvements and functional enhancements for players interested in light-themed interfaces.',
     tags: ['World of Warcraft', 'Addon', 'UI'],
     image: '/gallery/wow-3.svg',
-    year: 2023,
+    date: new Date('August 11, 2024'),
+    links: {
+      web: 'https://www.curseforge.com/wow/addons/divine-window',
+    },
   },
   {
     id: 'afk-answering-machine',
@@ -105,7 +134,10 @@ export const projects: Project[] = [
       "AFK Answering Machine is a World of Warcraft addon that handles automated responses and away-from-keyboard management, allowing players to set custom messages while they're unavailable.",
     tags: ['World of Warcraft', 'Addon', 'Automation'],
     image: '/gallery/wow-4.svg',
-    year: 2023,
+    date: new Date('April 23, 2023'),
+    links: {
+      web: 'https://www.curseforge.com/wow/addons/afk-anwering-machine',
+    },
   },
   {
     id: 'itaunted',
@@ -116,45 +148,61 @@ export const projects: Project[] = [
       'iTaunted is a World of Warcraft addon designed to enhance social gameplay with customizable taunts and interactive features for player-to-player communication.',
     tags: ['World of Warcraft', 'Addon', 'Social'],
     image: '/gallery/wow-5.svg',
-    year: 2023,
+    date: new Date('June 23, 2020'),
+    links: {
+      web: 'https://www.curseforge.com/wow/addons/i-taunted',
+    },
   },
 
   // Board Games Category (Carcassone Expansions)
   {
     id: 'the-ritualists',
     category: 'board-games',
-    title: 'The Ritualists',
+    title: 'Pennautier: The Ritualists',
     description:
       'Carcassone expansion by Pennautier featuring ritual and ceremonial gameplay mechanics.',
     longDescription:
       'The Ritualists is a Carcassone expansion created under the Pennautier label, introducing ritual-based mechanics and ceremonial gameplay elements that add depth to the classic tile-laying game.',
     tags: ['Carcassone', 'Expansion', 'Pennautier'],
     image: '/gallery/carcassone-1.svg',
-    year: 2024,
+    date: new Date('June 22, 2024'),
+    links: {
+      web: 'https://github.com/Pennautier/the-ritualists',
+      source: 'https://github.com/Pennautier/the-ritualists',
+    },
   },
   {
     id: 'magicians-charlatans',
     category: 'board-games',
-    title: 'Magicians and Charlatans',
+    title: 'Pennautier: Magicians and Charlatans',
     description: 'Carcassone expansion by Pennautier introducing mystical and deceptive elements.',
     longDescription:
       'Magicians and Charlatans, a Pennautier expansion for Carcassone, introduces mystical themes and deceptive play mechanics, adding new layers of strategy to the beloved board game.',
     tags: ['Carcassone', 'Expansion', 'Pennautier'],
     image: '/gallery/carcassone-2.svg',
-    year: 2024,
+    date: new Date('August 31, 2026'),
+    hidden: true,
   },
 
   // Apps/Interactive/Web Category
   {
     id: 'chase-bliss-presets',
     category: 'interactive',
-    title: 'Chase Bliss Presets',
+    title: 'Presets for Chase Bliss',
     description: 'Web tool for managing and organizing presets for Chase Bliss Audio gear.',
     longDescription:
       'Chase Bliss Presets is a web application that allows audio engineers and musicians to manage, organize, and share presets for Chase Bliss Audio equipment, streamlining the workflow for creative professionals.',
     tags: ['Web App', 'Audio', 'Presets'],
     image: '/gallery/app-1.svg',
-    year: 2024,
+    date: new Date('Januari 25, 2025'),
+    featured: true,
+    collaboration: [{ name: 'Laurens Lamberts Software', web: 'https://www.laurenslamberts.nl/' }],
+    links: {
+      web: 'https://presetsforchasebliss.com/',
+      appleStore: 'https://apps.apple.com/nl/app/presets-for-chase-bliss/id6742844431',
+      playStore:
+        'https://play.google.com/store/apps/details?id=com.laurenslamberts.chaseblisspresets',
+    },
   },
   {
     id: 'gleamy',
@@ -165,32 +213,8 @@ export const projects: Project[] = [
       'Gleamy is an interactive web application designed for creative expression and visual exploration. It provides tools and features for artists and designers to experiment with digital media in innovative ways.',
     tags: ['Web App', 'Interactive'],
     image: '/gallery/app-2.svg',
-    year: 2024,
-  },
-
-  // Print/Design & Identity Category
-  {
-    id: 'intermix',
-    category: 'print',
-    title: 'intermix',
-    description:
-      'Brand identity and print design project exploring mixed media and cultural themes.',
-    longDescription:
-      'intermix is a comprehensive brand identity and print design project that explores mixed media approaches and cultural themes, demonstrating our expertise in visual identity systems and collateral design.',
-    tags: ['Print', 'Identity', 'Design'],
-    image: '/gallery/print-1.svg',
-    year: 2023,
-  },
-  {
-    id: 'radiobeurs-tilbug',
-    category: 'print',
-    title: 'radiobeurs tilbug',
-    description: 'Print and graphic design project for cultural event branding and collateral.',
-    longDescription:
-      'radiobeurs tilbug is a print and graphic design project created for cultural event branding. It showcases our ability to create cohesive visual systems for events and cultural initiatives.',
-    tags: ['Print', 'Event', 'Identity'],
-    image: '/gallery/print-2.svg',
-    year: 2023,
+    date: new Date('March 07, 2023'),
+    hidden: true,
   },
 ];
 

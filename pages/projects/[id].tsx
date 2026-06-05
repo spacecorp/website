@@ -198,7 +198,7 @@ export default function ProjectPage({ project, category, relatedProjects }: Page
     name: project.title,
     description: project.longDescription,
     image: project.image ? `${baseUrl}${project.image}` : undefined,
-    datePublished: `${project.year}-01-01`,
+    datePublished: project.date.toISOString(),
     creator: {
       '@type': 'Organization',
       name: 'Space Corp',
@@ -250,7 +250,6 @@ export default function ProjectPage({ project, category, relatedProjects }: Page
           <ProjectTitle>{project.title}</ProjectTitle>
           <ProjectMeta>
             <MetaItem>{category.title}</MetaItem>
-            <MetaItem>{project.year}</MetaItem>
           </ProjectMeta>
         </Header>
 

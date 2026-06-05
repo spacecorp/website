@@ -3,35 +3,6 @@ import { NextPage } from 'next';
 import { PageTitle } from '../components/UI/PageTitle';
 import { Text } from '../components/UI/Text';
 
-const ContactGrid = styled.div`
-  display: grid;
-  gap: 28px;
-  max-width: 760px;
-`;
-
-const Card = styled.div`
-  padding: 28px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
-`;
-
-const CardTitle = styled.h2`
-  margin-top: 0;
-  font-size: 1.1rem;
-`;
-
-const CardCopy = styled.p`
-  margin: 0;
-  line-height: 1.75;
-  color: #d6d6d6;
-`;
-
-const EmailLink = styled.a`
-  color: #fff;
-  text-decoration: underline;
-`;
-
 const DateChanged = styled.em`
   font-family: var(--font-spacecorp), sans-serif;
   font-weight: 300;

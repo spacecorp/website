@@ -99,7 +99,7 @@ const Home: NextPage = () => {
           </Link>
         </ButtonRow>
       </Hero>
-      <Grid>
+      {/* <Grid>
         <FeatureCard>
           <FeatureTitle>Projects folder</FeatureTitle>
           <FeatureCopy>
@@ -128,7 +128,7 @@ const Home: NextPage = () => {
             update and extend.
           </FeatureCopy>
         </FeatureCard>
-      </Grid>
+      </Grid> */}
     </>
   );
 };

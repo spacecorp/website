@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import { Logo } from './Media/Logo';
+import { Text } from './UI/Text';
 
 const Shell = styled.div`
   min-height: 100vh;
@@ -99,9 +100,11 @@ const FooterLabel = styled.div`
 const FooterLink = styled(Link)`
   color: inherit;
   opacity: 0.85;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.3s ease-in-out;
+
   &:hover {
     opacity: 1;
+    color: #00999A;
   }
 `;
 
@@ -117,7 +120,7 @@ export default function Layout({ children, currentPath }: LayoutProps) {
         <Nav>
           <Link href="/">
             <LogoContainer>
-              <Logo height="30" />
+              <Logo height="30" alt="Space Corp, an independant software & design studio"/>
             </LogoContainer>
           </Link>
           <NavList>
@@ -149,26 +152,31 @@ export default function Layout({ children, currentPath }: LayoutProps) {
         </div>
         <FooterColumn>
           <FooterLabel>Legal</FooterLabel>
-          <FooterLink href="/privacy-statement">Privacy statement</FooterLink>
-          <FooterLink href="/terms-and-conditions">Terms & conditions</FooterLink>
+          <Text>
+          <FooterLink href="/privacy-statement">Privacy statement</FooterLink><br/>
+          <FooterLink href="/terms-and-conditions">Terms & conditions</FooterLink><br/>
+          </Text>
         </FooterColumn>
         <FooterColumn>
           <FooterLabel>Social</FooterLabel>
+          <Text>
           <FooterLink href="https://github.com/spacecorp" target="_blank">
             GitHub
-          </FooterLink>
+          </FooterLink><br/>
           <FooterLink href="https://makerworld.com/en/@spacecorp" target="_blank">
             Makerworld
-          </FooterLink>
+          </FooterLink><br/>
           <FooterLink href="https://www.curseforge.com/members/darkrider/projects" target="_blank">
             CurseForge
-          </FooterLink>
+          </FooterLink></Text>
         </FooterColumn>
         <FooterColumn>
           <FooterLabel>Company</FooterLabel>
-          <FooterLink href="/projects">Projects</FooterLink>
-          <FooterLink href="/about">About</FooterLink>
-          <FooterLink href="/contact">Contact</FooterLink>
+          <Text>
+            <strong>Space Corp</strong><br/>
+            Aletta Jacobslaan 12 <br/>
+            2314EM Leiden<br/>
+          The Netherlands</Text>
         </FooterColumn>
         <div
           style={{

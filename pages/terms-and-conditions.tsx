@@ -16,22 +16,6 @@ const Card = styled.div`
   background: rgba(255, 255, 255, 0.03);
 `;
 
-const CardTitle = styled.h2`
-  margin-top: 0;
-  font-size: 1.1rem;
-`;
-
-const CardCopy = styled.p`
-  margin: 0;
-  line-height: 1.75;
-  color: #d6d6d6;
-`;
-
-const EmailLink = styled.a`
-  color: #fff;
-  text-decoration: underline;
-`;
-
 const DateChanged = styled.em`
   font-family: var(--font-spacecorp), sans-serif;
   font-weight: 300;

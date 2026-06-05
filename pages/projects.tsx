@@ -5,12 +5,6 @@ import { NextPage } from 'next';
 import { categories, projects } from '../lib/projectsData';
 import { PageTitle } from '../components/UI/PageTitle';
 
-const Lead = styled.p`
-  color: #d1d1d1;
-  line-height: 1.8;
-  max-width: 780px;
-`;
-
 const CategoryGrid = styled.div`
   display: flex;
   gap: 18px;
@@ -44,17 +38,16 @@ const CategoryCard = styled.button`
   border-radius: 6px;
   color: white;
   flex: 1;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: #00999A;
+  }
 `;
 
 const CategoryTitle = styled.p`
   margin: 0;
   font-size: 1rem;
-`;
-
-const CategoryText = styled.p`
-  margin: 0;
-  color: #c9c9c9;
-  line-height: 1.7;
 `;
 
 const Gallery = styled.section`
@@ -93,41 +86,6 @@ const GalleryText = styled.p`
   line-height: 1.7;
 `;
 
-const BadgeRow = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 36px;
-`;
-
-const StoreLink = styled(Link)`
-  padding: 16px 22px;
-  border-radius: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-  &:hover {
-    transform: translateY(-1px);
-    background: rgba(255, 255, 255, 0.12);
-  }
-`;
-
-const StoreIcon = styled.span`
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  font-size: 0.85rem;
-`;
 
 const ProjectItem = styled.button`
   padding: 20px;
@@ -198,28 +156,24 @@ interface GalleryItem {
   text: string;
 }
 
-const gallery: GalleryItem[] = [
-  {
-    src: '/gallery/launch.svg',
-    title: 'Launch Console',
-    text: 'A concept screen for mobile operations and launch planning.',
-  },
-  {
-    src: '/gallery/terrain.svg',
-    title: '3D Habitat Study',
-    text: 'Illustrative model presentation for environment and lighting studies.',
-  },
-  {
-    src: '/gallery/board.svg',
-    title: 'Board System',
-    text: 'Card layout and player board design for a strategic tabletop title.',
-  },
-  {
-    src: '/gallery/identity.svg',
-    title: 'Visual Identity',
-    text: 'Minimal identity concept with bold typography and polished finishing touches.',
-  },
-];
+
+function sortByDate<T>(
+  array: T[], 
+  key: keyof T, 
+  order: 'asc' | 'desc' = 'desc'
+): T[] {
+  return [...array].sort((a, b) => {
+    // Safely convert values to timestamps
+    const dateA = new Date(a[key] as any).getTime();
+    const dateB = new Date(b[key] as any).getTime();
+
+    // Handle invalid or missing dates gracefully
+    if (isNaN(dateA)) return 1;
+    if (isNaN(dateB)) return -1;
+
+    return order === 'asc' ? dateA - dateB : dateB - dateA;
+  });
+}
 
 function scrollIntoView(id) {
   const scrollOffset = -130;
@@ -248,6 +202,7 @@ function scrollIntoView(id) {
     }
   };
 }
+const sortedProjects = sortByDate(projects, 'date').filter(item => !item.hidden)
 
 const Projects: NextPage = () => {
   return (
@@ -256,11 +211,11 @@ const Projects: NextPage = () => {
         <title>Projects | Space Corp</title>
         <meta
           name="description"
-          content="Browse Space Corp's portfolio of 3D models, World of Warcraft addons, board game expansions, web applications, and print design projects."
+          content="Browse Space Corp's portfolio of 3D models, game addons, board game expansions, mobile apps, code and design projects."
         />
         <meta
           name="keywords"
-          content="portfolio, projects, design, 3D, games, web apps, board games, print design"
+          content="portfolio, projects, design, 3D, games, web apps, board games, print, identity, design"
         />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Projects | Space Corp" />
@@ -281,19 +236,19 @@ const Projects: NextPage = () => {
       </CategoryGrid>
       <h2 style={{ marginTop: '48px' }}>Featured gallery</h2>
       <Gallery>
-        {gallery.map((item) => (
+        {sortedProjects.filter((item) => item.featured).map((item) => (
           <GalleryItem key={item.title}>
-            <GalleryImage src={item.src} alt={item.title} />
+            <GalleryImage src={item.image} alt={item.title} />
             <GalleryCaption>
               <GalleryTitle>{item.title}</GalleryTitle>
-              <GalleryText>{item.text}</GalleryText>
+              <GalleryText>{item.description}</GalleryText>
             </GalleryCaption>
           </GalleryItem>
         ))}
       </Gallery>
       <hr style={{ marginTop: '48px', height: 1, borderTop: 0, borderBottom: '1px solid #555' }} />
       {categories.map((category) => {
-        const categoryProjects = projects.filter((p) => p.category === category.id);
+        const categoryProjects = sortedProjects.filter((p) => p.category === category.id);
         return categoryProjects.length > 0 ? (
           <CategorySection key={category.id} id={category.id}>
             <SectionTitle>{category.title}</SectionTitle>
