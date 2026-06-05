@@ -136,8 +136,8 @@ export default function Layout({ children, currentPath }: LayoutProps) {
       <Footer>
         <FooterColumn>
           <FooterLabel>Legal</FooterLabel>
-          <FooterLink href="#">Privacy statement</FooterLink>
-          <FooterLink href="#">Terms & conditions</FooterLink>
+          <FooterLink href="/privacy-statement">Privacy statement</FooterLink>
+          <FooterLink href="/terms-and-conditions">Terms & conditions</FooterLink>
         </FooterColumn>
         <FooterColumn>
           <FooterLabel>Social</FooterLabel>
@@ -157,6 +157,18 @@ export default function Layout({ children, currentPath }: LayoutProps) {
           <FooterLink href="/about">About</FooterLink>
           <FooterLink href="/contact">Contact</FooterLink>
         </FooterColumn>
+        <div
+          style={{
+            marginTop: '1rem',
+            flex: '100%',
+            fontSize: '0.8rem',
+            color: '#efefef',
+            textAlign: 'center',
+          }}
+        >
+          <span style={{ fontSize: '1.1rem' }}>©</span> 2025 — 2026{' '}
+          <span style={{ display: 'inline-block', padding: '0 3px' }}>-</span> Space Corp
+        </div>
       </Footer>
     </Shell>
   );

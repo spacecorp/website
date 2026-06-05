@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import { NextPage } from 'next';
 import { PageTitle } from '../components/UI/PageTitle';
-
-const Text = styled.p`
-  max-width: 780px;
-  line-height: 1.85;
-  color: #d3d3d3;
-`;
+import { Text } from '../components/UI/Text';
 
 const List = styled.ul`
   margin: 24px 0 0;
