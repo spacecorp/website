@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540">
+    <rect width="720" height="540" fill="#080808" />
+    <path d="M0 420 L120 320 L220 380 L340 250 L460 330 L560 280 L720 400 V540 H0 Z" fill="#101010" />
+    <circle cx="160" cy="160" r="72" fill="#4d7cff" opacity="0.9" />
+    <path d="M460 160 C500 130 560 150 580 180" stroke="#fff" stroke-width="12" fill="none" opacity="0.45" />
+    <text x="40" y="520" fill="#ddd" font-size="40" font-family="Inter, sans-serif">Terrain design</text>
+</svg>

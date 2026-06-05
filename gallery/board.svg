@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540">
+    <rect width="720" height="540" fill="#070707" />
+    <rect x="80" y="80" width="560" height="380" rx="28" fill="#111" stroke="#d2d2d2" stroke-width="8" />
+    <rect x="120" y="120" width="180" height="120" rx="18" fill="#202020" />
+    <rect x="420" y="120" width="180" height="120" rx="18" fill="#202020" />
+    <rect x="120" y="280" width="480" height="140" rx="18" fill="#1c1c1c" />
+    <text x="50" y="520" fill="#ddd" font-size="40" font-family="Inter, sans-serif">Board game concept</text>
+</svg>
