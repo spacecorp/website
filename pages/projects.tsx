@@ -53,6 +53,7 @@ const CategoryTitle = styled.p`
 const Gallery = styled.section`
   display: grid;
   gap: 18px;
+  margin-top: 18px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 `;
 

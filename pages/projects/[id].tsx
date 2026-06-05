@@ -191,14 +191,13 @@ interface JsonLd {
 export default function ProjectPage({ project, category, relatedProjects }: PageProps) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://spacecorp.com';
   const projectUrl = `${baseUrl}/projects/${project.id}`;
-
   const jsonLd: JsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
     name: project.title,
     description: project.longDescription,
     image: project.image ? `${baseUrl}${project.image}` : undefined,
-    datePublished: project.date.toISOString(),
+    datePublished: project?.date || null,
     creator: {
       '@type': 'Organization',
       name: 'Space Corp',

@@ -12,14 +12,19 @@ export interface Project {
   tags: string[];
   image: string;
   heroImage?: string;
-  galerryImages?: string[];
-  date?: Date;
+  galleryImages?: {
+    image: string;
+    date?: Date;
+    description?: string;
+  }[];
+  date?: string;
   featured?: boolean;
   hidden?: boolean;
   collaboration?: {
     name: string;
     web?: string;
   }[];
+  featuredOn?: { web: string; platform: string; shortDescription: string }[];
   links?: {
     appleStore?: string;
     playStore?: string;
@@ -49,6 +54,10 @@ export const categories: Category[] = [
     id: 'print',
     title: 'Design & Identity',
   },
+  {
+    id: 'other',
+    title: 'Other',
+  },
 ];
 
 export const projects: Project[] = [
@@ -63,7 +72,7 @@ export const projects: Project[] = [
     tags: ['3D', 'Design'],
     image: '/gallery/3d-1.svg',
     featured: true,
-    date: new Date('February 2, 2026'),
+    date: new Date('February 2, 2026').toISOString(),
     links: {
       web: 'https://makerworld.com/en/models/2388736-everyday-t-led-lamp-kit-001',
     },
@@ -92,7 +101,7 @@ export const projects: Project[] = [
       'Express your Elf is a World of Warcraft addon that expands character customization options, allowing players to personalize their elven characters with unique visual enhancements and cosmetic features.',
     tags: ['World of Warcraft', 'Addon', 'Character Customization'],
     image: '/gallery/wow-1.svg',
-    date: new Date('May 26, 2020'),
+    date: new Date('May 26, 2020').toISOString(),
     links: {
       web: 'https://www.curseforge.com/wow/addons/express-your-elf',
     },
@@ -106,7 +115,7 @@ export const projects: Project[] = [
       'Nurse Nancy is a utility-focused World of Warcraft addon that provides helpful in-game features and quality-of-life improvements for healing and support gameplay.',
     tags: ['World of Warcraft', 'Addon', 'Utility'],
     image: '/gallery/wow-2.svg',
-    date: new Date('April 23, 2020'),
+    date: new Date('April 23, 2020').toISOString(),
     links: {
       web: 'https://www.curseforge.com/wow/addons/nurse-nancy',
     },
@@ -120,7 +129,7 @@ export const projects: Project[] = [
       'Divine Window enhances the World of Warcraft interface with a focus on holy and divine aesthetics, providing both visual improvements and functional enhancements for players interested in light-themed interfaces.',
     tags: ['World of Warcraft', 'Addon', 'UI'],
     image: '/gallery/wow-3.svg',
-    date: new Date('August 11, 2024'),
+    date: new Date('August 11, 2024').toISOString(),
     links: {
       web: 'https://www.curseforge.com/wow/addons/divine-window',
     },
@@ -134,7 +143,7 @@ export const projects: Project[] = [
       "AFK Answering Machine is a World of Warcraft addon that handles automated responses and away-from-keyboard management, allowing players to set custom messages while they're unavailable.",
     tags: ['World of Warcraft', 'Addon', 'Automation'],
     image: '/gallery/wow-4.svg',
-    date: new Date('April 23, 2023'),
+    date: new Date('April 23, 2023').toISOString(),
     links: {
       web: 'https://www.curseforge.com/wow/addons/afk-anwering-machine',
     },
@@ -148,7 +157,7 @@ export const projects: Project[] = [
       'iTaunted is a World of Warcraft addon designed to enhance social gameplay with customizable taunts and interactive features for player-to-player communication.',
     tags: ['World of Warcraft', 'Addon', 'Social'],
     image: '/gallery/wow-5.svg',
-    date: new Date('June 23, 2020'),
+    date: new Date('June 23, 2020').toISOString(),
     links: {
       web: 'https://www.curseforge.com/wow/addons/i-taunted',
     },
@@ -165,7 +174,7 @@ export const projects: Project[] = [
       'The Ritualists is a Carcassone expansion created under the Pennautier label, introducing ritual-based mechanics and ceremonial gameplay elements that add depth to the classic tile-laying game.',
     tags: ['Carcassone', 'Expansion', 'Pennautier'],
     image: '/gallery/carcassone-1.svg',
-    date: new Date('June 22, 2024'),
+    date: new Date('June 22, 2024').toISOString(),
     links: {
       web: 'https://github.com/Pennautier/the-ritualists',
       source: 'https://github.com/Pennautier/the-ritualists',
@@ -180,7 +189,7 @@ export const projects: Project[] = [
       'Magicians and Charlatans, a Pennautier expansion for Carcassone, introduces mystical themes and deceptive play mechanics, adding new layers of strategy to the beloved board game.',
     tags: ['Carcassone', 'Expansion', 'Pennautier'],
     image: '/gallery/carcassone-2.svg',
-    date: new Date('August 31, 2026'),
+    date: new Date('August 31, 2026').toISOString(),
     hidden: true,
   },
 
@@ -192,9 +201,9 @@ export const projects: Project[] = [
     description: 'Web tool for managing and organizing presets for Chase Bliss Audio gear.',
     longDescription:
       'Chase Bliss Presets is a web application that allows audio engineers and musicians to manage, organize, and share presets for Chase Bliss Audio equipment, streamlining the workflow for creative professionals.',
-    tags: ['Web App', 'Audio', 'Presets'],
+    tags: ['App', 'Midi', 'Hardware control'],
     image: '/gallery/app-1.svg',
-    date: new Date('Januari 25, 2025'),
+    date: new Date('Januari 25, 2025').toISOString(),
     featured: true,
     collaboration: [{ name: 'Laurens Lamberts Software', web: 'https://www.laurenslamberts.nl/' }],
     links: {
@@ -213,8 +222,19 @@ export const projects: Project[] = [
       'Gleamy is an interactive web application designed for creative expression and visual exploration. It provides tools and features for artists and designers to experiment with digital media in innovative ways.',
     tags: ['Web App', 'Interactive'],
     image: '/gallery/app-2.svg',
-    date: new Date('March 07, 2023'),
+    date: new Date('March 07, 2023').toISOString(),
     hidden: true,
+  },
+  {
+    id: 'past',
+    category: 'other',
+    title: 'Past work',
+    description: 'Past work worth showing',
+    longDescription:
+      'Past work that is worth of showing. This contains various projects of various clients or own work.',
+    tags: ['Interactive', 'Identity', 'Design', 'Other'],
+    image: '/gallery/app-x.svg',
+    featured: false,
   },
 ];
 
