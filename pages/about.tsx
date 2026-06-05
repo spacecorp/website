@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NextPage } from "next";
 
 const PageTitle = styled.h1`
   margin-top: 0;
@@ -22,7 +23,7 @@ const ListItem = styled.li`
   line-height: 1.75;
 `;
 
-export default function About() {
+const About: NextPage = () => {
   return (
     <>
       <PageTitle>About Space Corp</PageTitle>
@@ -44,4 +45,6 @@ export default function About() {
       </List>
     </>
   );
-}
+};
+
+export default About;

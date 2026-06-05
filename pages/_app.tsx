@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components";
+import { AppProps } from "next/app";
+import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 
 const GlobalStyle = createGlobalStyle`
@@ -37,7 +39,9 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default function App({ Component, pageProps, router }) {
+export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   return (
     <>
       <GlobalStyle />

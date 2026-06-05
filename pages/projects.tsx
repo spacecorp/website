@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import Head from "next/head";
+import Link from "next/link";
+import { NextPage } from "next";
+import { categories, projects } from "../lib/projectsData";
 
 const PageTitle = styled.h1`
   margin-top: 0;
@@ -110,35 +114,76 @@ const StoreIcon = styled.span`
   font-size: 0.85rem;
 `;
 
-const categories = [
-  {
-    title: "Apps",
-    description:
-      "Native and web applications with polished interfaces, onboarding, and clear product direction.",
-  },
-  {
-    title: "3D models",
-    description:
-      "Models and visual assets created for digital launch sequences, displays, and concept renders.",
-  },
-  {
-    title: "Board games",
-    description:
-      "Strategy and tabletop titles that blend narrative design with tactile gameplay experiences.",
-  },
-  {
-    title: "Games & add-ons",
-    description:
-      "Expandable game systems, modular expansions, and companion digital experiences.",
-  },
-  {
-    title: "Print & identity",
-    description:
-      "Brand systems, printed collateral, packaging, and visual identity for mission-driven stories.",
-  },
-];
+const ProjectItem = styled.a`
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
 
-const gallery = [
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+`;
+
+const ProjectTitle = styled.h3`
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: #fff;
+`;
+
+const ProjectDescription = styled.p`
+  margin: 0 0 12px;
+  color: #b0b0b0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+`;
+
+const TagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+`;
+
+const Tag = styled.span`
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #d0d0d0;
+`;
+
+const CategorySection = styled.section`
+  margin: 48px 0;
+`;
+
+const SectionTitle = styled.h2`
+  margin: 0 0 24px;
+  font-size: 1.8rem;
+`;
+
+const ProjectsGrid = styled.div`
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+`;
+
+interface GalleryItem {
+  src: string;
+  title: string;
+  text: string;
+}
+
+const gallery: GalleryItem[] = [
   {
     src: "/gallery/launch.svg",
     title: "Launch Console",
@@ -161,25 +206,70 @@ const gallery = [
   },
 ];
 
-export default function Projects() {
+const Projects: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>Projects | Space Corp</title>
+        <meta
+          name="description"
+          content="Browse Space Corp's portfolio of 3D models, World of Warcraft addons, board game expansions, web applications, and print design projects."
+        />
+        <meta
+          name="keywords"
+          content="portfolio, projects, design, 3D, games, web apps, board games, print design"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Projects | Space Corp" />
+        <meta
+          property="og:description"
+          content="Explore our creative projects across multiple categories."
+        />
+        <link rel="canonical" href="https://spacecorp.com/projects" />
+      </Head>
       <PageTitle>Projects</PageTitle>
       <Lead>
         Browse the Space Corp portfolio across product categories, creative
         visuals, tabletop design, and brand work.
       </Lead>
-
       <CategoryGrid>
         {categories.map((category) => (
-          <CategoryCard key={category.title}>
+          <CategoryCard key={category.id}>
             <CategoryTitle>{category.title}</CategoryTitle>
             <CategoryText>{category.description}</CategoryText>
           </CategoryCard>
         ))}
       </CategoryGrid>
-
-      <h2>Featured gallery</h2>
+      {categories.map((category) => {
+        const categoryProjects = projects.filter(
+          (p) => p.category === category.id,
+        );
+        return categoryProjects.length > 0 ? (
+          <CategorySection key={category.id} id={category.id}>
+            <SectionTitle>{category.title}</SectionTitle>
+            <ProjectsGrid>
+              {categoryProjects.map((project) => (
+                <Link key={project.id} href={`/projects/${project.id}`}>
+                  {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                  }
+                  <ProjectItem>
+                    <ProjectTitle>{project.title}</ProjectTitle>
+                    <ProjectDescription>
+                      {project.description}
+                    </ProjectDescription>
+                    <TagContainer>
+                      {project.tags.map((tag) => (
+                        <Tag key={tag}>{tag}</Tag>
+                      ))}
+                    </TagContainer>
+                  </ProjectItem>
+                </Link>
+              ))}
+            </ProjectsGrid>
+          </CategorySection>
+        ) : null;
+      })}
+      <h2 style={{ marginTop: "48px" }}>Featured gallery</h2>
       <Gallery>
         {gallery.map((item) => (
           <GalleryItem key={item.title}>
@@ -191,14 +281,13 @@ export default function Projects() {
           </GalleryItem>
         ))}
       </Gallery>
-
       <BadgeRow>
         <StoreLink
           href="https://apps.apple.com/"
           target="_blank"
           rel="noreferrer"
         >
-          <StoreIcon></StoreIcon>
+          <StoreIcon></StoreIcon>
           App Store
         </StoreLink>
         <StoreLink
@@ -212,4 +301,6 @@ export default function Projects() {
       </BadgeRow>
     </>
   );
-}
+};
+
+export default Projects;

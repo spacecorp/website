@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { NextPage } from "next";
 
 const Hero = styled.section`
   display: grid;
@@ -78,7 +79,7 @@ const FeatureCopy = styled.p`
   line-height: 1.7;
 `;
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
     <>
       <Hero>
@@ -90,15 +91,18 @@ export default function Home() {
           for projects, about, and contact.
         </Description>
         <ButtonRow>
-          <Link href="/projects" passHref legacyBehavior>
+          <Link href="/projects">
+            {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+            }
             <Button>See projects</Button>
           </Link>
-          <Link href="/contact" passHref legacyBehavior>
+          <Link href="/contact">
+            {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+            }
             <Button>Get in touch</Button>
           </Link>
         </ButtonRow>
       </Hero>
-
       <Grid>
         <FeatureCard>
           <FeatureTitle>Projects folder</FeatureTitle>
@@ -131,4 +135,6 @@ export default function Home() {
       </Grid>
     </>
   );
-}
+};
+
+export default Home;

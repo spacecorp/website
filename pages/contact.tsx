@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NextPage } from "next";
 
 const PageTitle = styled.h1`
   margin-top: 0;
@@ -34,7 +35,7 @@ const EmailLink = styled.a`
   text-decoration: underline;
 `;
 
-export default function Contact() {
+const Contact: NextPage = () => {
   return (
     <>
       <PageTitle>Contact</PageTitle>
@@ -59,4 +60,6 @@ export default function Contact() {
       </ContactGrid>
     </>
   );
-}
+};
+
+export default Contact;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { ReactNode } from "react";
 
 const Shell = styled.div`
   min-height: 100vh;
@@ -47,7 +48,11 @@ const NavList = styled.div`
   gap: 18px;
 `;
 
-const NavLink = styled.a`
+interface NavLinkProps {
+  active?: boolean;
+}
+
+const NavLink = styled.a<NavLinkProps>`
   color: ${(props) => (props.active ? "#fff" : "#c8c8c8")};
   font-weight: 500;
   transition: color 0.2s ease;
@@ -95,12 +100,17 @@ const FooterLink = styled.a`
   }
 `;
 
-export default function Layout({ children, currentPath }) {
+interface LayoutProps {
+  children: ReactNode;
+  currentPath: string;
+}
+
+export default function Layout({ children, currentPath }: LayoutProps) {
   return (
     <Shell>
       <Header>
         <Nav>
-          <Logo>Space Corp</Logo>
+          <Logo>Space Corp</Logo>
           <NavList>
             <Link href="/" passHref legacyBehavior>
               <NavLink active={currentPath === "/"}>Home</NavLink>
