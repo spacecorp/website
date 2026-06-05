@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540">
+    <rect width="720" height="540" fill="#090909" />
+    <circle cx="360" cy="300" r="180" fill="#0f0f0f" stroke="#4d7cff" stroke-width="10" />
+    <path d="M340 160 L380 160 L390 320 L330 320 Z" fill="#fff" />
+    <path d="M340 160 L360 120 L380 160 Z" fill="#4d7cff" />
+    <circle cx="360" cy="340" r="16" fill="#4d7cff" />
+    <text x="50" y="520" fill="#ddd" font-size="40" font-family="Inter, sans-serif">Launch screen</text>
+</svg>
