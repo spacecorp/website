@@ -12,24 +12,43 @@ const Lead = styled.p`
 `;
 
 const CategoryGrid = styled.div`
-  display: grid;
+  display: flex;
   gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   margin: 36px 0;
+  flex-wrap: wrap;
+
+justify-content: space-evenly;
+
+  @media (min-width: 748px) {
+    justify-content: unset;
+
+  }
+
 `;
 
-const CategoryCard = styled.article`
-  padding: 24px;
+const CategoryLabel = styled.div`
+align-self: center;
+flex: 100%;
+
+  @media (min-width: 748px) {
+    flex: unset;
+  }
+`
+
+const CategoryCard = styled.button`
+  padding: .8rem;
+  display: block;
+  cursor: pointer;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  min-height: 170px;
+  border-radius: 6px;
+  color: white;
+  flex: 1;
 `;
 
-const CategoryTitle = styled.h2`
-  margin-top: 0;
-  margin-bottom: 12px;
-  font-size: 1.2rem;
+const CategoryTitle = styled.p`
+  margin: 0;
+  font-size: 1rem;
 `;
 
 const CategoryText = styled.p`
@@ -81,7 +100,7 @@ const BadgeRow = styled.div`
   margin-top: 36px;
 `;
 
-const StoreLink = styled.a`
+const StoreLink = styled(Link)`
   padding: 16px 22px;
   border-radius: 14px;
   display: inline-flex;
@@ -110,7 +129,7 @@ const StoreIcon = styled.span`
   font-size: 0.85rem;
 `;
 
-const ProjectItem = styled.a`
+const ProjectItem = styled.button`
   padding: 20px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -202,6 +221,34 @@ const gallery: GalleryItem[] = [
   },
 ];
 
+function scrollIntoView(id) {
+  const scrollOffset = -130;
+
+  return (event) => {
+    // 1. Prevent default behavior if an event object exists
+    if (event && typeof event.preventDefault === 'function') {
+      event.preventDefault();
+    }
+
+    // 2. SSR Guard: Ensure we are safely running in the browser
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return;
+    }
+
+    const element = document.getElementById(id);
+    
+    if (element) {
+      // 3. Safely calculate absolute position and apply offset
+      const offsetTop = element.getBoundingClientRect().top + window.scrollY + scrollOffset;
+      
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+}
+
 const Projects: NextPage = () => {
   return (
     <>
@@ -224,18 +271,27 @@ const Projects: NextPage = () => {
         <link rel="canonical" href="https://spacecorp.com/projects" />
       </Head>
       <PageTitle>Projects</PageTitle>
-      <Lead>
-        Browse the Space Corp portfolio across product categories, creative visuals, tabletop
-        design, and brand work.
-      </Lead>
       <CategoryGrid>
+        <CategoryLabel>Categories:</CategoryLabel>
         {categories.map((category) => (
-          <CategoryCard key={category.id}>
+          <CategoryCard key={category.id} onClick={scrollIntoView(category.id)}>
             <CategoryTitle>{category.title}</CategoryTitle>
-            <CategoryText>{category.description}</CategoryText>
           </CategoryCard>
         ))}
       </CategoryGrid>
+      <h2 style={{ marginTop: '48px' }}>Featured gallery</h2>
+      <Gallery>
+        {gallery.map((item) => (
+          <GalleryItem key={item.title}>
+            <GalleryImage src={item.src} alt={item.title} />
+            <GalleryCaption>
+              <GalleryTitle>{item.title}</GalleryTitle>
+              <GalleryText>{item.text}</GalleryText>
+            </GalleryCaption>
+          </GalleryItem>
+        ))}
+      </Gallery>
+      <hr style={{ marginTop: '48px', height: 1, borderTop: 0, borderBottom: '1px solid #555' }} />
       {categories.map((category) => {
         const categoryProjects = projects.filter((p) => p.category === category.id);
         return categoryProjects.length > 0 ? (
@@ -260,28 +316,7 @@ const Projects: NextPage = () => {
           </CategorySection>
         ) : null;
       })}
-      <h2 style={{ marginTop: '48px' }}>Featured gallery</h2>
-      <Gallery>
-        {gallery.map((item) => (
-          <GalleryItem key={item.title}>
-            <GalleryImage src={item.src} alt={item.title} />
-            <GalleryCaption>
-              <GalleryTitle>{item.title}</GalleryTitle>
-              <GalleryText>{item.text}</GalleryText>
-            </GalleryCaption>
-          </GalleryItem>
-        ))}
-      </Gallery>
-      <BadgeRow>
-        <StoreLink href="https://apps.apple.com/" target="_blank" rel="noreferrer">
-          <StoreIcon></StoreIcon>
-          App Store
-        </StoreLink>
-        <StoreLink href="https://play.google.com/store" target="_blank" rel="noreferrer">
-          <StoreIcon>▶</StoreIcon>
-          Google Play
-        </StoreLink>
-      </BadgeRow>
+      
     </>
   );
 };

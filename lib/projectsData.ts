@@ -1,7 +1,6 @@
 export interface Category {
   id: string;
   title: string;
-  description: string;
 }
 
 export interface Project {
@@ -18,33 +17,23 @@ export interface Project {
 export const categories: Category[] = [
   {
     id: '3d',
-    title: '3D',
-    description:
-      'Digital models and visual assets for visualization, concept renders, and interactive experiences.',
+    title: '3D modeling',
   },
   {
     id: 'games',
     title: 'Games & add-ons',
-    description:
-      'World of Warcraft mods and companion experiences that enhance gameplay and add new dimensions.',
   },
   {
     id: 'board-games',
     title: 'Board games',
-    description:
-      'Carcassone expansions under Pennautier—strategy and tabletop experiences with unique mechanics.',
   },
   {
-    id: 'apps',
-    title: 'Apps/Interactive/Web',
-    description:
-      'Web applications and interactive tools with polished interfaces and clear functionality.',
+    id: 'interactive',
+    title: 'Interactive',
   },
   {
     id: 'print',
-    title: 'Print/Design & Identity',
-    description:
-      'Brand systems, printed collateral, and visual identity for creative and cultural projects.',
+    title: 'Design & Identity',
   },
 ];
 
@@ -158,7 +147,7 @@ export const projects: Project[] = [
   // Apps/Interactive/Web Category
   {
     id: 'chase-bliss-presets',
-    category: 'apps',
+    category: 'interactive',
     title: 'Chase Bliss Presets',
     description: 'Web tool for managing and organizing presets for Chase Bliss Audio gear.',
     longDescription:
@@ -169,7 +158,7 @@ export const projects: Project[] = [
   },
   {
     id: 'gleamy',
-    category: 'apps',
+    category: 'interactive',
     title: 'Gleamy',
     description: 'Interactive web application for creative expression and visual exploration.',
     longDescription:
