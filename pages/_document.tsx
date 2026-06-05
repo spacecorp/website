@@ -46,6 +46,29 @@ export default class MyDocument extends Document {
           <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
           <meta name="msapplication-TileColor" content="#000000" />
           <meta name="theme-color" content="#000000" />
+
+          <title>Space Corp</title>
+        <meta name="description" content="Cutting through the noise to design for a grounded reality." />
+        <meta name="keywords" content="app development, 3d modeling, coding, game design, design and identity" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="/" />
+        <meta property="og:title" content='Space Corp' />
+        <meta property="og:description" content="Cutting through the noise to design for a grounded reality." />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Space Corp" />
+        <meta name="twitter:description" content="Cutting through the noise to design for a grounded reality." />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href="/" />
+
+        {/* Additional Meta Tags */}
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Space Corp" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>
         <body>
           <Main />
