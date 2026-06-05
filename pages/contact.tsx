@@ -1,10 +1,6 @@
-import styled from "styled-components";
-import { NextPage } from "next";
-
-const PageTitle = styled.h1`
-  margin-top: 0;
-  font-size: clamp(2.8rem, 4vw, 4rem);
-`;
+import styled from 'styled-components';
+import { NextPage } from 'next';
+import { PageTitle } from '../components/UI/PageTitle';
 
 const ContactGrid = styled.div`
   display: grid;
@@ -43,18 +39,16 @@ const Contact: NextPage = () => {
         <Card>
           <CardTitle>Let's collaborate</CardTitle>
           <CardCopy>
-            For project inquiries, creative direction, or launch planning, reach
-            out and we can discuss next steps.
+            For project inquiries, creative direction, or launch planning, reach out and we can
+            discuss next steps.
           </CardCopy>
         </Card>
         <Card>
           <CardTitle>Speak with Space Corp</CardTitle>
           <CardCopy>
-            Email us at{" "}
-            <EmailLink href="mailto:hello@spacecorp.example">
-              hello@spacecorp.example
-            </EmailLink>{" "}
-            or connect via social platforms in the footer.
+            Email us at{' '}
+            <EmailLink href="mailto:hello@spacecorp.example">hello@spacecorp.example</EmailLink> or
+            connect via social platforms in the footer.
           </CardCopy>
         </Card>
       </ContactGrid>

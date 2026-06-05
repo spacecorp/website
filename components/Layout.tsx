@@ -1,6 +1,8 @@
-import Link from "next/link";
-import styled from "styled-components";
-import { ReactNode } from "react";
+import Link from 'next/link';
+import styled from 'styled-components';
+import { ReactNode } from 'react';
+import Image from 'next/image';
+import { Logo } from './Media/Logo';
 
 const Shell = styled.div`
   min-height: 100vh;
@@ -8,12 +10,7 @@ const Shell = styled.div`
   flex-direction: column;
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.04), transparent 28%),
-    radial-gradient(
-      circle at bottom right,
-      rgba(255, 255, 255, 0.06),
-      transparent 22%
-    ),
-    #020202;
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06), transparent 22%), #020202;
 `;
 
 const Header = styled.header`
@@ -34,12 +31,13 @@ const Nav = styled.nav`
   gap: 16px;
 `;
 
-const Logo = styled.div`
+const LogoContainer = styled.div`
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-size: 0.95rem;
   color: #fff;
+  fill: #fff;
 `;
 
 const NavList = styled.div`
@@ -52,8 +50,8 @@ interface NavLinkProps {
   active?: boolean;
 }
 
-const NavLink = styled.a<NavLinkProps>`
-  color: ${(props) => (props.active ? "#fff" : "#c8c8c8")};
+const NavLink = styled.span<NavLinkProps>`
+  color: ${(props) => (props.active ? '#fff' : '#c8c8c8')};
   font-weight: 500;
   transition: color 0.2s ease;
   &:hover {
@@ -87,11 +85,14 @@ const FooterColumn = styled.div`
 `;
 
 const FooterLabel = styled.div`
-  font-weight: 700;
+  font-weight: 500;
   color: #fff;
+  font-family: var(--font-typestar), sans-serif;
+  font-size: 1.2rem;
+  position: relative;
 `;
 
-const FooterLink = styled.a`
+const FooterLink = styled(Link)`
   color: inherit;
   opacity: 0.85;
   transition: opacity 0.2s ease;
@@ -110,19 +111,23 @@ export default function Layout({ children, currentPath }: LayoutProps) {
     <Shell>
       <Header>
         <Nav>
-          <Logo>Space Corp</Logo>
+          <Link href="/">
+            <LogoContainer>
+              <Logo height="30" />
+            </LogoContainer>
+          </Link>
           <NavList>
-            <Link href="/" passHref legacyBehavior>
-              <NavLink active={currentPath === "/"}>Home</NavLink>
+            <Link href="/" passHref>
+              <NavLink active={currentPath === '/'}>Home</NavLink>
             </Link>
-            <Link href="/projects" passHref legacyBehavior>
-              <NavLink active={currentPath === "/projects"}>Projects</NavLink>
+            <Link href="/projects" passHref>
+              <NavLink active={currentPath === '/projects'}>Projects</NavLink>
             </Link>
-            <Link href="/about" passHref legacyBehavior>
-              <NavLink active={currentPath === "/about"}>About</NavLink>
+            <Link href="/about" passHref>
+              <NavLink active={currentPath === '/about'}>About</NavLink>
             </Link>
-            <Link href="/contact" passHref legacyBehavior>
-              <NavLink active={currentPath === "/contact"}>Contact</NavLink>
+            <Link href="/contact" passHref>
+              <NavLink active={currentPath === '/contact'}>Contact</NavLink>
             </Link>
           </NavList>
         </Nav>
@@ -136,26 +141,14 @@ export default function Layout({ children, currentPath }: LayoutProps) {
         </FooterColumn>
         <FooterColumn>
           <FooterLabel>Social</FooterLabel>
-          <FooterLink
-            href="https://twitter.com/spacecorp"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Twitter
-          </FooterLink>
-          <FooterLink
-            href="https://linkedin.com/company/spacecorp"
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-          </FooterLink>
-          <FooterLink
-            href="https://github.com/spacecorp"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <FooterLink href="https://github.com/spacecorp" target="_blank">
             GitHub
+          </FooterLink>
+          <FooterLink href="https://makerworld.com/en/@spacecorp" target="_blank">
+            Makerworld
+          </FooterLink>
+          <FooterLink href="https://www.curseforge.com/members/darkrider/projects" target="_blank">
+            CurseForge
           </FooterLink>
         </FooterColumn>
         <FooterColumn>

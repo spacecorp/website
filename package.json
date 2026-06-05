@@ -8,20 +8,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "pnpm run build:static && gh-pages -d out -b gh-pages"
+    "deploy": "pnpm run build:static && gh-pages -d out -b gh-pages",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
-    "next": "16.2.7",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
-    "styled-components": "6.4.2"
+    "next": "^16.2.7",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "styled-components": "^6.4.2"
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
-    "@types/react": "19.2.16",
-    "babel-plugin-styled-components": "2.3.0",
-    "gh-pages": "6.3.0",
-    "typescript": "^6.0.3"
+    "@types/react": "^19.2.16",
+    "babel-plugin-styled-components": "^2.3.0",
+    "gh-pages": "^6.3.0",
+    "typescript": "^6.0.3",
+    "prettier": "^3.8.3"
   },
   "packageManager": "pnpm@10.18.3"
 }

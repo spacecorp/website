@@ -1,13 +1,9 @@
-import styled from "styled-components";
-import Head from "next/head";
-import Link from "next/link";
-import { NextPage } from "next";
-import { categories, projects } from "../lib/projectsData";
-
-const PageTitle = styled.h1`
-  margin-top: 0;
-  font-size: clamp(2.8rem, 4vw, 4rem);
-`;
+import styled from 'styled-components';
+import Head from 'next/head';
+import Link from 'next/link';
+import { NextPage } from 'next';
+import { categories, projects } from '../lib/projectsData';
+import { PageTitle } from '../components/UI/PageTitle';
 
 const Lead = styled.p`
   color: #d1d1d1;
@@ -185,24 +181,24 @@ interface GalleryItem {
 
 const gallery: GalleryItem[] = [
   {
-    src: "/gallery/launch.svg",
-    title: "Launch Console",
-    text: "A concept screen for mobile operations and launch planning.",
+    src: '/gallery/launch.svg',
+    title: 'Launch Console',
+    text: 'A concept screen for mobile operations and launch planning.',
   },
   {
-    src: "/gallery/terrain.svg",
-    title: "3D Habitat Study",
-    text: "Illustrative model presentation for environment and lighting studies.",
+    src: '/gallery/terrain.svg',
+    title: '3D Habitat Study',
+    text: 'Illustrative model presentation for environment and lighting studies.',
   },
   {
-    src: "/gallery/board.svg",
-    title: "Board System",
-    text: "Card layout and player board design for a strategic tabletop title.",
+    src: '/gallery/board.svg',
+    title: 'Board System',
+    text: 'Card layout and player board design for a strategic tabletop title.',
   },
   {
-    src: "/gallery/identity.svg",
-    title: "Visual Identity",
-    text: "Minimal identity concept with bold typography and polished finishing touches.",
+    src: '/gallery/identity.svg',
+    title: 'Visual Identity',
+    text: 'Minimal identity concept with bold typography and polished finishing touches.',
   },
 ];
 
@@ -229,8 +225,8 @@ const Projects: NextPage = () => {
       </Head>
       <PageTitle>Projects</PageTitle>
       <Lead>
-        Browse the Space Corp portfolio across product categories, creative
-        visuals, tabletop design, and brand work.
+        Browse the Space Corp portfolio across product categories, creative visuals, tabletop
+        design, and brand work.
       </Lead>
       <CategoryGrid>
         {categories.map((category) => (
@@ -241,22 +237,17 @@ const Projects: NextPage = () => {
         ))}
       </CategoryGrid>
       {categories.map((category) => {
-        const categoryProjects = projects.filter(
-          (p) => p.category === category.id,
-        );
+        const categoryProjects = projects.filter((p) => p.category === category.id);
         return categoryProjects.length > 0 ? (
           <CategorySection key={category.id} id={category.id}>
             <SectionTitle>{category.title}</SectionTitle>
             <ProjectsGrid>
               {categoryProjects.map((project) => (
                 <Link key={project.id} href={`/projects/${project.id}`}>
-                  {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
-                  }
+                  {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */}
                   <ProjectItem>
                     <ProjectTitle>{project.title}</ProjectTitle>
-                    <ProjectDescription>
-                      {project.description}
-                    </ProjectDescription>
+                    <ProjectDescription>{project.description}</ProjectDescription>
                     <TagContainer>
                       {project.tags.map((tag) => (
                         <Tag key={tag}>{tag}</Tag>
@@ -269,7 +260,7 @@ const Projects: NextPage = () => {
           </CategorySection>
         ) : null;
       })}
-      <h2 style={{ marginTop: "48px" }}>Featured gallery</h2>
+      <h2 style={{ marginTop: '48px' }}>Featured gallery</h2>
       <Gallery>
         {gallery.map((item) => (
           <GalleryItem key={item.title}>
@@ -282,19 +273,11 @@ const Projects: NextPage = () => {
         ))}
       </Gallery>
       <BadgeRow>
-        <StoreLink
-          href="https://apps.apple.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <StoreLink href="https://apps.apple.com/" target="_blank" rel="noreferrer">
           <StoreIcon></StoreIcon>
           App Store
         </StoreLink>
-        <StoreLink
-          href="https://play.google.com/store"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <StoreLink href="https://play.google.com/store" target="_blank" rel="noreferrer">
           <StoreIcon>▶</StoreIcon>
           Google Play
         </StoreLink>

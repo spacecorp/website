@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Link from "next/link";
-import { NextPage } from "next";
+import styled from 'styled-components';
+import Link from 'next/link';
+import { NextPage } from 'next';
 
 const Hero = styled.section`
   display: grid;
@@ -35,7 +35,7 @@ const ButtonRow = styled.div`
   gap: 16px;
 `;
 
-const Button = styled.a`
+const Button = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -86,19 +86,14 @@ const Home: NextPage = () => {
         <Eyebrow>Space Corp</Eyebrow>
         <Title>Build a modern identity for your next launch.</Title>
         <Description>
-          A minimalist portfolio and product site for Space Corp, designed with
-          a bold black theme, fast static generation, and clean, readable pages
-          for projects, about, and contact.
+          A minimalist portfolio and product site for Space Corp, designed with a bold black theme,
+          fast static generation, and clean, readable pages for projects, about, and contact.
         </Description>
         <ButtonRow>
           <Link href="/projects">
-            {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
-            }
             <Button>See projects</Button>
           </Link>
           <Link href="/contact">
-            {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
-            }
             <Button>Get in touch</Button>
           </Link>
         </ButtonRow>
@@ -107,29 +102,29 @@ const Home: NextPage = () => {
         <FeatureCard>
           <FeatureTitle>Projects folder</FeatureTitle>
           <FeatureCopy>
-            Explore apps, 3D assets, board games, games & add-ons, and
-            print/identity work in one simple gallery.
+            Explore apps, 3D assets, board games, games & add-ons, and print/identity work in one
+            simple gallery.
           </FeatureCopy>
         </FeatureCard>
         <FeatureCard>
           <FeatureTitle>Store links built in</FeatureTitle>
           <FeatureCopy>
-            Use the App Store and Google Play calls-to-action to highlight your
-            mobile or desktop releases.
+            Use the App Store and Google Play calls-to-action to highlight your mobile or desktop
+            releases.
           </FeatureCopy>
         </FeatureCard>
         <FeatureCard>
           <FeatureTitle>Static optimized</FeatureTitle>
           <FeatureCopy>
-            The site is configured for Next.js static export and GitHub Pages
-            deployment with a clean static output.
+            The site is configured for Next.js static export and GitHub Pages deployment with a
+            clean static output.
           </FeatureCopy>
         </FeatureCard>
         <FeatureCard>
           <FeatureTitle>Dark minimal aesthetic</FeatureTitle>
           <FeatureCopy>
-            A white-on-black palette gives Space Corp a refined, modern presence
-            that is easy to update and extend.
+            A white-on-black palette gives Space Corp a refined, modern presence that is easy to
+            update and extend.
           </FeatureCopy>
         </FeatureCard>
       </Grid>

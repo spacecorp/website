@@ -1,15 +1,15 @@
-import Head from "next/head";
-import Link from "next/link";
-import styled from "styled-components";
-import { GetStaticProps, GetStaticPaths } from "next";
+import Head from 'next/head';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import {
   getProjectById,
   getCategoryById,
   projects,
   Project,
   Category,
-} from "../../lib/projectsData";
-import { ParsedUrlQuery } from "querystring";
+} from '../../lib/projectsData';
+import { ParsedUrlQuery } from 'querystring';
 
 const Container = styled.div`
   max-width: 900px;
@@ -173,14 +173,14 @@ interface PageProps {
 }
 
 interface JsonLd {
-  "@context": string;
-  "@type": string;
+  '@context': string;
+  '@type': string;
   name: string;
   description: string;
   image?: string;
   datePublished: string;
   creator: {
-    "@type": string;
+    '@type': string;
     name: string;
     url: string;
   };
@@ -188,62 +188,45 @@ interface JsonLd {
   inLanguage: string;
 }
 
-export default function ProjectPage({
-  project,
-  category,
-  relatedProjects,
-}: PageProps) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://spacecorp.com";
+export default function ProjectPage({ project, category, relatedProjects }: PageProps) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://spacecorp.com';
   const projectUrl = `${baseUrl}/projects/${project.id}`;
 
   const jsonLd: JsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
     name: project.title,
     description: project.longDescription,
     image: project.image ? `${baseUrl}${project.image}` : undefined,
     datePublished: `${project.year}-01-01`,
     creator: {
-      "@type": "Organization",
-      name: "Space Corp",
+      '@type': 'Organization',
+      name: 'Space Corp',
       url: baseUrl,
     },
-    keywords: project.tags.join(", "),
-    inLanguage: "en-US",
+    keywords: project.tags.join(', '),
+    inLanguage: 'en-US',
   };
 
   return (
     <>
       <Head>
         <title>{`${project.title} | Space Corp Projects`}</title>
-        <meta
-          name="description"
-          content={project.longDescription || project.description}
-        />
-        <meta name="keywords" content={project.tags.join(", ")} />
+        <meta name="description" content={project.longDescription || project.description} />
+        <meta name="keywords" content={project.tags.join(', ')} />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={projectUrl} />
         <meta property="og:title" content={`${project.title} | Space Corp`} />
-        <meta
-          property="og:description"
-          content={project.longDescription || project.description}
-        />
-        {project.image && (
-          <meta property="og:image" content={`${baseUrl}${project.image}`} />
-        )}
+        <meta property="og:description" content={project.longDescription || project.description} />
+        {project.image && <meta property="og:image" content={`${baseUrl}${project.image}`} />}
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${project.title} | Space Corp`} />
-        <meta
-          name="twitter:description"
-          content={project.longDescription || project.description}
-        />
-        {project.image && (
-          <meta name="twitter:image" content={`${baseUrl}${project.image}`} />
-        )}
+        <meta name="twitter:description" content={project.longDescription || project.description} />
+        {project.image && <meta name="twitter:image" content={`${baseUrl}${project.image}`} />}
 
         {/* Canonical URL */}
         <link rel="canonical" href={projectUrl} />
@@ -271,9 +254,7 @@ export default function ProjectPage({
           </ProjectMeta>
         </Header>
 
-        {project.image && (
-          <ProjectImage src={project.image} alt={project.title} />
-        )}
+        {project.image && <ProjectImage src={project.image} alt={project.title} />}
 
         <Content>
           <MainContent>
@@ -285,9 +266,7 @@ export default function ProjectPage({
             <Section>
               <SectionTitle>Category</SectionTitle>
               <div>
-                <CategoryLink href={`/projects#${project.category}`}>
-                  {category.title}
-                </CategoryLink>
+                <CategoryLink href={`/projects#${project.category}`}>{category.title}</CategoryLink>
               </div>
             </Section>
           </MainContent>
@@ -329,7 +308,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Params> = ({ params }) => {
-  const project = getProjectById(params?.id || "");
+  const project = getProjectById(params?.id || '');
 
   if (!project) {
     return {
@@ -345,7 +324,7 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = ({ params }) =>
   }
 
   const categoryProjects = projects.filter(
-    (p) => p.category === project.category && p.id !== project.id,
+    (p) => p.category === project.category && p.id !== project.id
   );
 
   // Get up to 3 related projects from the same category
