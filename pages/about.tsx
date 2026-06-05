@@ -51,7 +51,7 @@ const About: NextPage = () => {
         not take. Your data, your time, and your trust are not resources to be harvested. They're
         boundaries to be respected.
       </Text>
-      <h2>What we believe</h2>
+      <h2>Our manifesto</h2>
       <List>
         <ListItem>
           <Text>
