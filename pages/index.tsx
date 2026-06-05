@@ -1,32 +1,27 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { NextPage } from 'next';
-
+import { Text } from '../components/UI/Text';
 const Hero = styled.section`
   display: grid;
   gap: 28px;
 `;
 
-const Eyebrow = styled.p`
-  margin: 0;
-  color: #7a7a7a;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-`;
-
 const Title = styled.h1`
   margin: 0;
-  font-size: clamp(3rem, 5vw, 5rem);
-  letter-spacing: -0.08em;
-  line-height: 0.95;
-  max-width: 10ch;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 0.9;
+
+  @media (min-width: 767px) {
+    max-width: 60%;
+  }
 `;
 
-const Description = styled.p`
-  max-width: 780px;
+const Description = styled.div`
+  max-width: 70%;
   line-height: 1.85;
   color: #d8d8d8;
+  margin-top: -1rem;
 `;
 
 const ButtonRow = styled.div`
@@ -35,8 +30,9 @@ const ButtonRow = styled.div`
   gap: 16px;
 `;
 
-const Button = styled.button`
+const Button = styled.span`
   display: inline-flex;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   padding: 14px 24px;
@@ -83,11 +79,16 @@ const Home: NextPage = () => {
   return (
     <>
       <Hero>
-        <Eyebrow>Space Corp</Eyebrow>
-        <Title>Build a modern identity for your next launch.</Title>
+        <Title>Cutting through the noise to design for a grounded reality.</Title>
         <Description>
-          A minimalist portfolio and product site for Space Corp, designed with a bold black theme,
-          fast static generation, and clean, readable pages for projects, about, and contact.
+          <Text style={{ fontWeight: '300', fontSize: '150%', lineHeight: 1, color: 'white' }}>
+            Technology designed to captivate your senses, not capture your time.
+          </Text>
+          <Text>
+            We build autonomous software and digital experiments on our own terms. Whether we are
+            crafting bold, sensory web experiences or engineering precise tools that help you focus,
+            everything we make is designed to ground you — not keep you scrolling.
+          </Text>
         </Description>
         <ButtonRow>
           <Link href="/projects">

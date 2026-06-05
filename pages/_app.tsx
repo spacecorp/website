@@ -44,7 +44,11 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
     background: #010101;
     color: #f7f7f7;
+    overflow-y: scroll;
+  scrollbar-gutter: stable;
   }
+
+
 
   body {
     margin: 0;

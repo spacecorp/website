@@ -27,6 +27,7 @@ const Nav = styled.nav`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  flex-direction: column;
   justify-content: space-between;
   gap: 16px;
 `;
@@ -74,7 +75,10 @@ const Footer = styled.footer`
   gap: 24px;
   justify-content: space-between;
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.95rem;
+
+  @media (min-width: 748px) {
+    justify-content: center;
+  }
 `;
 
 const FooterColumn = styled.div`
@@ -134,6 +138,15 @@ export default function Layout({ children, currentPath }: LayoutProps) {
       </Header>
       <Content>{children}</Content>
       <Footer>
+        <div style={{ whiteSpace: 'nowrap', minWidth: 0, flexShrink: 1, marginRight: '2rem' }}>
+          <Image
+            style={{ filter: 'invert(100%)' }}
+            src="/favicon.svg"
+            height="45"
+            width="45"
+            alt="Space Corp icon, representing a moon textured circle with a hole in the center."
+          />
+        </div>
         <FooterColumn>
           <FooterLabel>Legal</FooterLabel>
           <FooterLink href="/privacy-statement">Privacy statement</FooterLink>
