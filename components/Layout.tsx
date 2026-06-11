@@ -166,7 +166,7 @@ export default function Layout({ children, currentPath }: LayoutProps) {
           <FooterLink href="https://makerworld.com/en/@spacecorp" target="_blank">
             Makerworld
           </FooterLink><br/>
-          <FooterLink href="https://www.curseforge.com/members/darkrider/projects" target="_blank">
+          <FooterLink href="https://www.curseforge.com/members/spacecorp/projects" target="_blank">
             CurseForge
           </FooterLink></Text>
         </FooterColumn>
